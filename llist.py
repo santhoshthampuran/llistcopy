@@ -26,7 +26,7 @@ class LinkedList:
         node = self.head
         while node:
             yield node
-            node = node.next_ptr            
+            node = node.next_ptr
 
     # def print_list(self):
     #     node = self.head
