@@ -6,23 +6,37 @@ class LinkedList:
     __head = None
     __node_addr = []
 
-    def __init__(self, rng):
-        last = None
-        for i, value in enumerate(rng):
-            node = Node(value)
-            self.__node_addr.append(node)
+    def __init__(self, rng=None, head=None):
+        if rng is not None and head is not None:
+            print("")
+        elif rng is not None:
+            last = None
+            for i, value in enumerate(rng):
+                node = Node(value)
+                self.__node_addr.append(node)
+                if i == 0:
+                    self.__head = node
+                    last = self.__head
+                else:
+                    last.next_ptr = node
+                    last = last.next_ptr
+            # assign random pointers
+            for node in self:
+                node.random_ptr = self.__node_addr[randint(0, len(self.__node_addr) - 1)]
+        elif head is not None:
+            self.__head = head
+
+    def copy_linked_list(self):
+        for i, node in enumerate(self):
+            new_node = Node(node.value)
             if i == 0:
-                self.__head = node
-                last = self.__head
+                new_head = new_node
+                last = new_head
             else:
-                last.next_ptr = node
+                last.next_ptr = new_node
                 last = last.next_ptr
 
-        self.__assign_random_ptr()
-
-    def __assign_random_ptr(self):
-        for node in self:
-            node.random_ptr = self.__node_addr[randint(0, len(self.__node_addr) - 1)]
+        return LinkedList(head=new_head)
 
     # def __iter__(self):
     #     return self.head
