@@ -7,5 +7,8 @@ log.info("this is a test message %s %s", "yes", "no")
 llist = LinkedList(range(0, 100, 2))
 # llist.print_list()
 
-print(node.value for node in llist)
+for node in llist:
+    print(node)
+
+print([node for node in llist])
 
