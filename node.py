@@ -9,4 +9,4 @@ class Node:
         return str(self.value)
 
     def __repr__(self):
-        return str(self.value)
+        return str("<{0},{1}>".format(self.value, self.random_ptr.value))

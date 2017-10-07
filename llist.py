@@ -1,18 +1,28 @@
 from node import Node
+from random import randint
 
 
 class LinkedList:
     head = None
+    __node_addr = []
 
     def __init__(self, rng):
         last = None
         for i, value in enumerate(rng):
+            node = Node(value)
+            self.__node_addr.append(node)
             if i == 0:
-                self.head = Node(value)
+                self.head = node
                 last = self.head
             else:
-                last.next_ptr = Node(value)
+                last.next_ptr = node
                 last = last.next_ptr
+
+        self.assign_random_ptr()
+
+    def assign_random_ptr(self):
+        for node in self:
+            node.random_ptr = self.__node_addr[randint(0, len(self.__node_addr)-1)]
 
     # def __iter__(self):
     #     return self.head
