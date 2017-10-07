@@ -3,7 +3,7 @@ from random import randint
 
 
 class LinkedList:
-    head = None
+    __head = None
     __node_addr = []
 
     def __init__(self, rng):
@@ -12,17 +12,17 @@ class LinkedList:
             node = Node(value)
             self.__node_addr.append(node)
             if i == 0:
-                self.head = node
-                last = self.head
+                self.__head = node
+                last = self.__head
             else:
                 last.next_ptr = node
                 last = last.next_ptr
 
-        self.assign_random_ptr()
+        self.__assign_random_ptr()
 
-    def assign_random_ptr(self):
+    def __assign_random_ptr(self):
         for node in self:
-            node.random_ptr = self.__node_addr[randint(0, len(self.__node_addr)-1)]
+            node.random_ptr = self.__node_addr[randint(0, len(self.__node_addr) - 1)]
 
     # def __iter__(self):
     #     return self.head
@@ -33,7 +33,7 @@ class LinkedList:
     #     return self.next_ptr
 
     def __iter__(self):
-        node = self.head
+        node = self.__head
         while node:
             yield node
             node = node.next_ptr
