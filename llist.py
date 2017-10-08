@@ -27,14 +27,22 @@ class LinkedList:
             self.__head = head
 
     def copy_linked_list(self):
+        random_ptr_map = {}
+        new_head = None
         for i, node in enumerate(self):
-            new_node = Node(node.value)
+            new_node = Node.create_from_node(node)
+            random_ptr_map[node] = new_node
             if i == 0:
                 new_head = new_node
                 last = new_head
             else:
                 last.next_ptr = new_node
                 last = last.next_ptr
+                new_node.next_ptr = None
+        ptr = new_head
+        while ptr is not None:
+            ptr.random_ptr = random_ptr_map[ptr.random_ptr]
+            ptr = ptr.next_ptr
 
         return LinkedList(head=new_head)
 

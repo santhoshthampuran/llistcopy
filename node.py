@@ -5,6 +5,11 @@ class Node:
         self.next_ptr = next_ptr
         self.random_ptr = random_ptr
 
+    @classmethod
+    def create_from_node(cls, node):
+        new_node = cls(node.value, node.next_ptr, node.random_ptr)
+        return new_node
+
     def __str__(self):
         return str(self.value)
 

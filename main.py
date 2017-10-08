@@ -5,7 +5,7 @@ import time
 log = logger.getLogger(__name__)
 log.info("generating linked list...")
 start_time = time.time()
-llist = LinkedList(range(0, 10, 2))
+llist = LinkedList(range(0, 100, 2))
 log.info("elements in the linked list are:")
 log.info([node for node in llist])
 log.info("copying linked list...")
