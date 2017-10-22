@@ -1,7 +1,7 @@
 import logging
 
 
-def getLogger(name):
+def getLogger(name, includeFileHandler=False):
     # create logger
     logger = logging.getLogger(name)
     logger.setLevel(logging.DEBUG)
@@ -11,12 +11,14 @@ def getLogger(name):
     # chdlr.setLevel(logging.DEBUG)
 
     # create file handler
-    fhdlr = logging.FileHandler(filename="log.txt", mode="a")
-    # since it is file, I'll need more details like the time
-    fhdlr.setFormatter(logging.Formatter("%(asctime)s - %(filename)s - %(levelname)s - %(message)s"))
+    if includeFileHandler:
+        fhdlr = logging.FileHandler(filename="log.txt", mode="a")
+        # since it is file, I'll need more details like the time
+        fhdlr.setFormatter(logging.Formatter("%(asctime)s - %(filename)s - %(levelname)s - %(message)s"))
+        logger.addHandler(fhdlr)
+
     formatter = logging.Formatter("%(levelname)s:%(message)s")
     chdlr.setFormatter(formatter)
     logger.addHandler(chdlr)
-    logger.addHandler(fhdlr)
 
     return logger
